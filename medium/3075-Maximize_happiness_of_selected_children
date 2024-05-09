@@ -1,0 +1,22 @@
+class Solution {
+public:
+    long long maximumHappinessSum(vector<int>& happiness, int k) {
+        // Sort in descending order [42,12,1]
+        sort(happiness.begin(), happiness.end(), greater<int>());
+        long ret= happiness[0]; // Holds answer
+        k--;
+        int subValue = 1;
+        for(auto it=happiness.begin()+1; it!=happiness.end(); it++){
+            *it -= subValue;
+            if(*it<0) *it=0;
+            if(k==0) return ret;
+            ret+=*it; // Add current happiness value to ret
+            cout << "ret is " << ret << "and k is " << k <<  endl;
+            subValue++;
+            k--;
+        }
+
+        return ret;
+      
+    }
+};
